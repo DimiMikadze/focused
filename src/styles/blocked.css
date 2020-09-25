@@ -1,0 +1,65 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://res.cloudinary.com/dkkf9iqnd/image/upload/v1599300573/other/blocked-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-filter: grayscale(100%);
+}
+
+.container {
+  margin-left: var(--spacing-md);
+  position: relative;
+  color: var(--color-text-secondary);
+}
+
+.logo {
+  font-size: var(--font-size-xxl);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-blue);
+}
+
+.text {
+  font-size: var(--font-size-xl);
+}
+
+.text b {
+  font-weight: 600;
+}
+
+.text-container {
+  margin-top: 120px;
+}
+
+.text-small {
+  font-size: var(--font-size-lg);
+  line-height: var(--font-size-xl);
+}
+
+.button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--color-blue);
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:focus {
+  outline: 0;
+}

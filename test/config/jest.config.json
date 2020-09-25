@@ -1,0 +1,6 @@
+{
+  "preset": "jest-puppeteer",
+  "rootDir": "../",
+  "testRegex": "./*\\.test\\.ts$",
+  "setupFilesAfterEnv": ["./config/jest.setup.ts"]
+}

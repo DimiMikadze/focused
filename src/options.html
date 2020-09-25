@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Options - Focused</title>
+  </head>
+  <body>
+    <div class="root">
+      <template id="template-list-item">
+        <li data-template-list>
+          <div class="favicon-and-domain">
+            <img class="favicon" src="" />
+            <span data-template-list-item-title></span>
+          </div>
+
+          <button data-template-list-item-delete-button>
+            <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M424 64h-88V48c0-26.467-21.533-48-48-48h-64c-26.467 0-48 21.533-48 48v16H88c-22.056 0-40 17.944-40 40v56c0 8.836 7.164 16 16 16h8.744l13.823 290.283C87.788 491.919 108.848 512 134.512 512h242.976c25.665 0 46.725-20.081 47.945-45.717L439.256 176H448c8.836 0 16-7.164 16-16v-56c0-22.056-17.944-40-40-40zM208 48c0-8.822 7.178-16 16-16h64c8.822 0 16 7.178 16 16v16h-96zM80 104c0-4.411 3.589-8 8-8h336c4.411 0 8 3.589 8 8v40H80zm313.469 360.761A15.98 15.98 0 01377.488 480H134.512a15.98 15.98 0 01-15.981-15.239L104.78 176h302.44z"
+                />
+                <path
+                  d="M256 448c8.836 0 16-7.164 16-16V224c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16zM336 448c8.836 0 16-7.164 16-16V224c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16zM176 448c8.836 0 16-7.164 16-16V224c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"
+                />
+              </svg>
+            </svg>
+          </button>
+        </li>
+      </template>
+
+      <div class="heading" data-heading>
+        <h1 class="logo" data-logo>Focused</h1>
+      </div>
+
+      <p class="note">Block distracting websites by adding their domain names.</p>
+
+      <form class="form" data-form>
+        <input
+          autofocus
+          data-input
+          class="input"
+          type="text"
+          name="website"
+          placeholder="Enter a website e.g facebook.com"
+        />
+        <button class="input-button" type="submit" data-submit>
+          <svg class="add-icon" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M256 0C114.836 0 0 114.836 0 256s114.836 256 256 256 256-114.836 256-256S397.164 0 256 0zm0 0"
+              fill="#30d158"
+            />
+            <path
+              d="M368 277.332h-90.668V368c0 11.777-9.555 21.332-21.332 21.332s-21.332-9.555-21.332-21.332v-90.668H144c-11.777 0-21.332-9.555-21.332-21.332s9.555-21.332 21.332-21.332h90.668V144c0-11.777 9.555-21.332 21.332-21.332s21.332 9.555 21.332 21.332v90.668H368c11.777 0 21.332 9.555 21.332 21.332s-9.555 21.332-21.332 21.332zm0 0"
+              fill="#fafafa"
+            />
+          </svg>
+        </button>
+      </form>
+
+      <p data-notifications class="notifications"></p>
+
+      <div class="list-container">
+        <h3 class="list-title" data-list-title>Blocked Websites</h3>
+        <ul class="ul" id="blocked-sites-list"></ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>
+        <b>Focused</b> is an open-source project, and its source code is available on
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/dimimikadze/focused">Github.</a>
+      </span>
+    </div>
+  </body>
+</html>
