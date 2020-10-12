@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="#">Focused</a> &middot;
+  <a href="https://chrome.google.com/webstore/detail/focused/nhmfobpmgblnndffibohjdlpjdcpmcel">Focused</a> &middot;
   
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license" />
 
@@ -20,7 +20,7 @@ Focused is a Google Chrome extension that will improve your focus and increase p
 
 ## Installation
 
-Currently, the extension is under review in the Chrome Web Store. The Installation URL will be provided as soon as it is published.
+<a href="https://chrome.google.com/webstore/detail/focused/nhmfobpmgblnndffibohjdlpjdcpmcel">Click here</a> to install an extension from Chrome Web Store.
 
 ## Running local copy
 
