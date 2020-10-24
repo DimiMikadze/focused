@@ -1,6 +1,7 @@
 .root {
   max-width: 960px;
   margin: 0 auto;
+  padding: 0 var(--spacing-xxs);
   min-height: 100vh;
   overflow: hidden;
 }
@@ -37,7 +38,7 @@
   color: var(--color-gray);
 }
 
-.favicon-and-domain {
+.blocked-websites-favicon-and-name {
   display: flex;
   align-items: center;
 }
@@ -47,8 +48,11 @@
 }
 
 .form {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
   align-items: center;
   margin-top: var(--spacing-lg);
   align-items: center;
@@ -57,11 +61,19 @@
 .input {
   width: 100%;
   height: 40px;
-  padding-left: var(--spacing-xxs);
+  padding-left: var(--spacing-xs);
   border-radius: 10px;
-  box-sizing: border-box;
   border: 1px solid var(--color-gray);
   transition: border-color 0.5s;
+}
+
+.input-active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input:hover {
+  border: 1px solid var(--color-gray-dark);
 }
 
 .input:focus {
@@ -85,6 +97,55 @@
   border: 0;
 }
 
+.autocomplete {
+  display: none;
+  width: 100%;
+  max-height: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray);
+  border-top: 1px solid var(--color-blue);
+  position: absolute;
+  top: 38px;
+  left: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.autocomplete-visible {
+  display: block;
+}
+
+.autocomplete-ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.autocomplete-ul li {
+  height: 40px;
+}
+
+.autocomplete-ul button {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+
+.autocomplete-button-active {
+  background-color: var(--color-gray-light) !important;
+}
+
+.autocomplete-ul img {
+  margin-left: var(--spacing-xxs);
+}
+
 .add-icon {
   width: 22px;
   transition: fill 0.3s;
@@ -94,17 +155,18 @@
   fill: var(--color-green-dark);
 }
 
-.remove-icon {
+.blocked-websites-icon {
   width: 18px;
   fill: var(--color-red);
   transition: fill 0.3s;
 }
 
-.remove-icon:hover {
+.blocked-websites-icon:hover {
   fill: var(--color-red-dark);
 }
 
 .notifications {
+  text-align: center;
   color: var(--color-red);
   margin-left: 4px;
   margin-top: var(--spacing-xs);
@@ -115,13 +177,13 @@
   font-weight: 600;
 }
 
-.ul {
+.blocked-websites-ul {
   margin: 0;
   padding-left: 0;
   list-style-type: none;
 }
 
-.ul li {
+.blocked-websites-ul li {
   padding: var(--spacing-xxs) 0;
   font-size: var(--font-size-sm);
   padding-left: var(--spacing-xxs);
@@ -131,7 +193,7 @@
   justify-content: space-between;
 }
 
-.ul button {
+.blocked-websites-ul button {
   display: flex;
   border: 0;
   outline: 0;
@@ -142,16 +204,16 @@
   transition: background-color 0.2s;
 }
 
-.ul button:hover {
+.blocked-websites-ul button:hover {
   cursor: pointer;
 }
 
-.list-container {
+.blocked-websites-container {
   margin-top: var(--spacing-xl);
   margin-bottom: 120px;
 }
 
-.list-title {
+.blocked-websites-title {
   margin-left: 4px;
   color: var(--color-text-secondary);
   font-weight: 600;
