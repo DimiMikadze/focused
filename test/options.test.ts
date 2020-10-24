@@ -80,4 +80,53 @@ describe('Options page.', () => {
     const editedListItems = await page.$$('[data-blocked-websites-name]');
     expect(editedListItems.length).toBe(2);
   });
+
+  it('Should show website suggestions on input click, and hide them on outside input click.', async () => {
+    await page.evaluate(() => {
+      const input: HTMLInputElement = document.querySelector('[data-input]');
+      input.click();
+    });
+
+    await page.waitForSelector('[data-autocomplete-li]');
+    const autocompleteList = await page.$$('[data-autocomplete-li]');
+    expect(autocompleteList.length > 0).toBeTruthy();
+
+    await page.evaluate(() => {
+      const heading: HTMLDivElement = document.querySelector('[data-heading]');
+      heading.click();
+    });
+    const updatedAutocompleteList = await page.$$('[data-autocomplete-li]');
+    console.log('updatedListItems', updatedAutocompleteList.length);
+    expect(updatedAutocompleteList.length > 0).toBeFalsy();
+  });
+
+  it('Should suggest websites correctly based on the input value.', async () => {
+    const TEST_DOMAINS = ['google.com', 'gizmodo.com', 'gigaom.com'];
+    await page.focus('[data-input]');
+    await page.keyboard.type('g');
+
+    const autocompleteList = await page.$$('[data-autocomplete-li]');
+    expect(autocompleteList.length).toBe(3);
+    for (let i = 0; i < autocompleteList.length; i++) {
+      expect(await page.evaluate((element) => element.innerText, autocompleteList[i])).toEqual(TEST_DOMAINS[i]);
+    }
+    await page.evaluate(() => {
+      const input: HTMLInputElement = document.querySelector('[data-input]');
+      input.value = '';
+      const heading: HTMLDivElement = document.querySelector('[data-heading]');
+      heading.click();
+    });
+  });
+
+  it('Should navigate through autocomplete via keyboard and website to blocked list on enter press.', async () => {
+    await page.focus('[data-input]');
+    await page.keyboard.type('i');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const autocompleteList = await page.$$('[data-autocomplete-li]');
+    const blockedListItems = await page.$$('[data-blocked-websites-name]');
+    expect(await page.evaluate((element) => element.textContent, blockedListItems[0])).toEqual('instagram.com');
+    expect(autocompleteList.length > 0).toBeFalsy();
+  });
 });
