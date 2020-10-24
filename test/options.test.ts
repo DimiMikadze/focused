@@ -96,7 +96,6 @@ describe('Options page.', () => {
       heading.click();
     });
     const updatedAutocompleteList = await page.$$('[data-autocomplete-li]');
-    console.log('updatedListItems', updatedAutocompleteList.length);
     expect(updatedAutocompleteList.length > 0).toBeFalsy();
   });
 

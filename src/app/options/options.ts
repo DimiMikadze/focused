@@ -136,7 +136,7 @@ async function renderFocusModeToggle(): Promise<void> {
  * Renders the autocomplete component.
  */
 function autocomplete(): void {
-  let autocompleteVisible = false;
+  let isAutocompleteVisible = false;
   let focusedListItemIndex: number | null = null;
 
   const inputEl = document.querySelector('[data-input]') as HTMLInputElement;
@@ -150,7 +150,7 @@ function autocomplete(): void {
     ulElement.innerHTML = '';
     inputEl.classList.remove('input-active');
     autocompleteEl.classList.remove('autocomplete-visible');
-    autocompleteVisible = false;
+    isAutocompleteVisible = false;
   }
 
   // On input event listener.
@@ -164,7 +164,7 @@ function autocomplete(): void {
     WEBSITE_SUGGESTIONS.map((website) => {
       // Check if the input value matches with the suggestions and it's not blocked already.
       if (website.substr(0, value.length) === value && !blockedWebsites.includes(website)) {
-        autocompleteVisible = true;
+        isAutocompleteVisible = true;
 
         const li = template.cloneNode(true) as HTMLLIElement;
         const buttonEl = li.querySelector('[data-autocomplete-button]') as HTMLSpanElement;
@@ -243,7 +243,7 @@ function autocomplete(): void {
   inputEl.addEventListener('click', onInput);
   inputEl.addEventListener('keydown', onKeyDown);
   document.addEventListener('click', (e: Event) => {
-    if (!autocompleteVisible) return;
+    if (!isAutocompleteVisible) return;
 
     // Hide the autocomplete if a user clicked outside of the input.
     const target = e.target as HTMLElement;
