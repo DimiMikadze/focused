@@ -40,6 +40,16 @@
   --spacing-xl: 60px;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   color: var(--color-text);
   font-family: var(--font-family, sans-serif);

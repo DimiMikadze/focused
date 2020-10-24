@@ -66,18 +66,18 @@ describe('Options page.', () => {
       await fillInputAndClick(page, TEST_DOMAINS[i]);
     }
 
-    await page.waitForSelector('[data-list-title]');
-    expect(await page.$eval('[data-list-title]', (e: HTMLLIElement) => e.innerText)).toEqual(LIST_TITLE);
-    const listItems = await page.$$('[data-template-list-item-title]');
+    await page.waitForSelector('[data-blocked-websites-title]');
+    expect(await page.$eval('[data-blocked-websites-title]', (e: HTMLLIElement) => e.innerText)).toEqual(LIST_TITLE);
+    const listItems = await page.$$('[data-blocked-websites-name]');
     expect(listItems.length).toBe(3);
     for (let i = 0; i < listItems.length; i++) {
       expect(await page.evaluate((element) => element.textContent, listItems[i])).toEqual(TEST_DOMAINS.reverse()[i]);
     }
 
-    const deleteButtons = await page.$$('[data-template-list-item-delete-button]');
+    const deleteButtons = await page.$$('[data-blocked-websites-button]');
     await deleteButtons[1].click();
     await delay(1000);
-    const editedListItems = await page.$$('[data-template-list-item-title]');
+    const editedListItems = await page.$$('[data-blocked-websites-name]');
     expect(editedListItems.length).toBe(2);
   });
 });

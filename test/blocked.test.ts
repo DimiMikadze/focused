@@ -39,8 +39,8 @@ describe('Popup.', () => {
     await page2.close();
 
     await page.bringToFront();
-    await page.waitForSelector('[data-template-list-item-delete-button]');
-    const deleteButtons = await page.$$('[data-template-list-item-delete-button]');
+    await page.waitForSelector('[data-blocked-websites-button]');
+    const deleteButtons = await page.$$('[data-blocked-websites-button]');
     await deleteButtons[0].click();
     const page3 = await browser.newPage();
     await page3.goto(`https://${DOMAIN}`);
@@ -65,8 +65,8 @@ describe('Popup.', () => {
     expect(await page2.$eval('[data-blocked-url]', (e: HTMLElement) => e.innerText)).toEqual(DOMAIN);
 
     await page.bringToFront();
-    await page.waitForSelector('[data-template-list-item-delete-button]');
-    const deleteButtons = await page.$$('[data-template-list-item-delete-button]');
+    await page.waitForSelector('[data-blocked-websites-button]');
+    const deleteButtons = await page.$$('[data-blocked-websites-button]');
     await deleteButtons[0].click();
     await page2.bringToFront();
     await page2.waitForNavigation();
