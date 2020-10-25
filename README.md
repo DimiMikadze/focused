@@ -25,6 +25,7 @@ Focused is a Google Chrome extension that will improve your focus and increase p
 ## Running local copy
 
 - Clone the repository and install the dependencies with `yarn` or `npm install`.
+- Create the initial bundle with `yarn build` or `npm run build`.
 - Run the project in development mode by running `yarn start` or `npm start`.
 - Navigate to the Chrome extensions page, and enable **Developer mode**.
 - Click the **LOAD UNPACKED** button and select the extension's build folder.
