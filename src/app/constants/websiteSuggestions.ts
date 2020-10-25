@@ -1,4 +1,4 @@
-export const WEBSITE_SUGGESTIONS = [
+export const WEBSITE_SUGGESTIONS: string[] = [
   'facebook.com',
   'instagram.com',
   'youtube.com',

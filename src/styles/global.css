@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
 
 :root {
-  /* Main colors */
   --color-red: #ff375f;
   --color-red-dark: #e6002e;
   --color-green: #30d158;
@@ -16,22 +15,18 @@
   --color-black-rgba: 0, 0, 0;
   --color-white-rgba: 255, 255, 255;
 
-  /* Text colors */
   --color-text: var(--color-black);
   --color-text-secondary: var(--color-black-light);
   --color-link: var(--color-blue);
   --color-link-secondary: var(--color-gray-dark);
 
-  /* Typography */
   --font-family: 'Open Sans';
-
   --font-size-sm: 13px;
   --font-size-md: 14px;
   --font-size-lg: 18px;
   --font-size-xl: 28px;
   --font-size-xxl: 48px;
 
-  /* Spacing */
   --spacing-xxs: 8px;
   --spacing-xs: 12px;
   --spacing-sm: 20px;
