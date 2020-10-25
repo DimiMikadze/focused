@@ -100,9 +100,9 @@ describe('Options page.', () => {
   });
 
   it('Should suggest websites correctly based on the input value.', async () => {
-    const TEST_DOMAINS = ['google.com', 'gizmodo.com', 'gigaom.com'];
+    const TEST_DOMAINS = ['netflix.com', 'nytimes.com', 'news.ycombinator.com'];
     await page.focus('[data-input]');
-    await page.keyboard.type('g');
+    await page.keyboard.type('n');
 
     const autocompleteList = await page.$$('[data-autocomplete-li]');
     expect(autocompleteList.length).toBe(3);
