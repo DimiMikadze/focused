@@ -5,16 +5,17 @@
   overflow: hidden;
 }
 
-.overlay {
+.illustration {
+  width: 700px;
+  height: 440px;
   position: absolute;
-  top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('https://res.cloudinary.com/dkkf9iqnd/image/upload/v1599300573/other/blocked-background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-filter: grayscale(100%);
+}
+
+.illustration svg {
+  width: 655px;
+  height: 414px;
 }
 
 .container {
