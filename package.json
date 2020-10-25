@@ -12,6 +12,19 @@
     "test:e2e:watch": "yarn test:e2e --watch",
     "test": "yarn test:unit && yarn test:e2e"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimimikadze/focused"
+  },
+  "keywords": [
+    "focused",
+    "chrome",
+    "extension"
+  ],
+  "author": "Dimi Mikadze",
+  "bugs": {
+    "url": "https://github.com/dimimikadze/focused/issues"
+  },
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
