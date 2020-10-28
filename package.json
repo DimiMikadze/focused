@@ -1,7 +1,7 @@
 {
   "name": "focused",
   "description": "Improve focus and increase productivity by blocking distracting websites while working or studying.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "start": "webpack --watch --mode development",
     "build": "rimraf build && webpack --mode production",
