@@ -7,7 +7,7 @@ import { Events } from '../constants/index';
  * If yes, shows the blocked page instead.
  */
 function checkBeforeNavigation(): void {
-  chrome.webNavigation.onCompleted.addListener(async () => {
+  chrome.webNavigation.onCommitted.addListener(async () => {
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
       const tab = tabs[0];
       if (!tab || !tab.id || !tab.url) {
