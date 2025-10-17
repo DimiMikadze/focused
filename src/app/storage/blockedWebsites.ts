@@ -1,16 +1,13 @@
 /**
  * Gets all the blocked sites from the storage.
  */
-export function getBlockedWebSites(): Promise<[]> {
-  return new Promise((resolve) => {
-    return chrome.storage.sync.get(['websites'], (result) => {
-      if (result.websites) {
-        resolve(JSON.parse(result.websites));
-      } else {
-        resolve([]);
-      }
-    });
-  });
+export async function getBlockedWebSites(): Promise<string[]> {
+  const result = await chrome.storage.sync.get(['websites']);
+  if (result.websites) {
+    return JSON.parse(result.websites);
+  } else {
+    return [];
+  }
 }
 
 /**
@@ -19,12 +16,7 @@ export function getBlockedWebSites(): Promise<[]> {
 export async function addToBlockedWebSites(website: string): Promise<void> {
   const websites: string[] = await getBlockedWebSites();
   websites.unshift(website);
-
-  return new Promise((resolve) => {
-    return chrome.storage.sync.set({ websites: JSON.stringify(websites) }, () => {
-      resolve();
-    });
-  });
+  await chrome.storage.sync.set({ websites: JSON.stringify(websites) });
 }
 
 /**
@@ -33,10 +25,5 @@ export async function addToBlockedWebSites(website: string): Promise<void> {
 export async function removeFromBlockedWebSites(website: string): Promise<void> {
   const websites: string[] = await getBlockedWebSites();
   const filteredWebsites = websites.filter((w) => w !== website);
-
-  return new Promise((resolve) => {
-    return chrome.storage.sync.set({ websites: JSON.stringify(filteredWebsites) }, () => {
-      resolve();
-    });
-  });
+  await chrome.storage.sync.set({ websites: JSON.stringify(filteredWebsites) });
 }

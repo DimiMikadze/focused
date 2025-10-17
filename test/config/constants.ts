@@ -4,7 +4,7 @@ import path from 'path';
  * Chrome extension ID in development mode isn't the same for everyone.
  * If you don't know what your extension's ID is, navigate to its options page and grab it from the URL.
  */
-const EXTENSION_ID = process.env.EXTENSION_ID;
+const EXTENSION_ID = process.env.EXTENSION_ID || '';
 
 /**
  * Base URL of the extension.

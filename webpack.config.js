@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const srcPath = path.join(__dirname, 'src');
 const buildPath = path.join(__dirname, 'build');
@@ -40,15 +40,7 @@ module.exports = (env, options) => {
         },
         {
           test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDevelopment,
-              },
-            },
-            'css-loader',
-          ],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
       ],
     },
@@ -58,7 +50,7 @@ module.exports = (env, options) => {
     },
 
     optimization: {
-      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+      minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin()],
     },
 
     plugins: [
@@ -69,12 +61,14 @@ module.exports = (env, options) => {
       }),
 
       ...STATIC_FILES.map((name) => {
-        return new CopyWebpackPlugin([
-          {
-            from: path.join(srcPath, name),
-            to: path.join(buildPath, name),
-          },
-        ]);
+        return new CopyWebpackPlugin({
+          patterns: [
+            {
+              from: path.join(srcPath, name),
+              to: path.join(buildPath, name),
+            },
+          ],
+        });
       }),
 
       ...HTML_FILES.map((fileName) => {

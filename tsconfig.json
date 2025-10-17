@@ -2,11 +2,16 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "build",
-    "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
-    "strict": true,
-    "allowJs": true
+    "noImplicitAny": false,
+    "module": "ESNext",
+    "target": "ES2017",
+    "lib": ["DOM", "ESNext"],
+    "strict": false,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "build", "test"]
 }

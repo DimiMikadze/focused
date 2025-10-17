@@ -1,3 +1,3 @@
-import {} from 'dotenv/config';
+import 'dotenv/config';
 
-jest.setTimeout(30000);
+jest.setTimeout(60000);

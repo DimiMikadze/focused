@@ -107,7 +107,9 @@ describe('Options page.', () => {
     const autocompleteList = await page.$$('[data-autocomplete-li]');
     expect(autocompleteList.length).toBe(3);
     for (let i = 0; i < autocompleteList.length; i++) {
-      expect(await page.evaluate((element) => element.innerText, autocompleteList[i])).toEqual(TEST_DOMAINS[i]);
+      expect(await page.evaluate((element) => (element as HTMLElement).innerText, autocompleteList[i])).toEqual(
+        TEST_DOMAINS[i]
+      );
     }
     await page.evaluate(() => {
       const input: HTMLInputElement = document.querySelector('[data-input]');

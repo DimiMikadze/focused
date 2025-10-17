@@ -1,6 +1,9 @@
 {
-  "preset": "jest-puppeteer",
   "rootDir": "../",
   "testRegex": "./*\\.test\\.ts$",
-  "setupFilesAfterEnv": ["./config/jest.setup.ts"]
+  "testEnvironment": "node",
+  "setupFilesAfterEnv": ["./config/jest.setup.ts"],
+  "transform": {
+    "^.+\\.ts$": ["babel-jest", { "configFile": "./babel.config.js" }]
+  }
 }

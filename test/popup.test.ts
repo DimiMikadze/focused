@@ -33,10 +33,10 @@ describe('Popup.', () => {
       NOT_AVAILABLE_MESSAGE
     );
 
-    clickOnToggleButton(page);
+    await clickOnToggleButton(page);
     expect(await page.$eval('[data-siteinfo-messages]', (e: HTMLSpanElement) => e.innerText)).toEqual(MODE_OFF_MESSAGE);
 
-    clickOnToggleButton(page);
+    await clickOnToggleButton(page);
     expect(await page.$eval('[data-siteinfo-messages]', (e: HTMLSpanElement) => e.innerText)).toEqual(
       NOT_AVAILABLE_MESSAGE
     );

@@ -45,21 +45,20 @@ export async function renderBlockedWebsites(): Promise<void> {
  * the site can be added to the blocked list also from the extensions popup.
  */
 function reRenderBlockedListOnTabActivation(): void {
-  chrome.tabs.onActivated.addListener(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-      const tab = tabs[0];
-      if (!tab.url || !tab.id) {
-        return false;
-      }
+  chrome.tabs.onActivated.addListener(async () => {
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    const tab = tabs[0];
+    if (!tab.url || !tab.id) {
+      return;
+    }
 
-      const extensionId = chrome.runtime.id;
-      const optionsPage = 'options.html';
-      const isOptionsPage = tab.url.includes(extensionId) && tab.url.includes(optionsPage);
+    const extensionId = chrome.runtime.id;
+    const optionsPage = 'options.html';
+    const isOptionsPage = tab.url.includes(extensionId) && tab.url.includes(optionsPage);
 
-      if (isOptionsPage) {
-        renderBlockedWebsites();
-      }
-    });
+    if (isOptionsPage) {
+      renderBlockedWebsites();
+    }
   });
 }
 

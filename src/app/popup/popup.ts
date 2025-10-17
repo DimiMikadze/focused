@@ -45,6 +45,13 @@ async function popup(): Promise<void> {
   renderSiteInfo(focusMode, siteStatus, siteName, tabId, url);
 
   attachListenersToFooter();
+
+  // Listen for close popup message from background script
+  chrome.runtime.onMessage.addListener((request) => {
+    if (request.event === Events.CLOSE_POPUP) {
+      window.close();
+    }
+  });
 }
 
 popup();

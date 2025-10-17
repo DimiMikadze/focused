@@ -8,22 +8,19 @@ import { Events } from '../constants/index';
  */
 function checkBeforeNavigation(): void {
   chrome.webNavigation.onCommitted.addListener(async () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-      const tab = tabs[0];
-      if (!tab || !tab.id || !tab.url) {
-        return false;
-      }
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    const tab = tabs[0];
+    if (!tab || !tab.id || !tab.url) {
+      return;
+    }
 
-      const siteName: string = getDomainNameFromURL(tab.url);
-      const blockedSites: string[] = await Storage.getBlockedWebSites();
-      const focusMode = await Storage.getFocusMode();
+    const siteName: string = getDomainNameFromURL(tab.url);
+    const blockedSites: string[] = await Storage.getBlockedWebSites();
+    const focusMode = await Storage.getFocusMode();
 
-      if (focusMode && blockedSites.includes(siteName) && !isBlockedPage(tab.url)) {
-        chrome.tabs.update(tab.id, { url: `blocked.html?site=${tab.url}` });
-      }
-
-      return false;
-    });
+    if (focusMode && blockedSites.includes(siteName) && !isBlockedPage(tab.url)) {
+      chrome.tabs.update(tab.id, { url: `blocked.html?site=${tab.url}` });
+    }
   });
 }
 
@@ -32,23 +29,20 @@ function checkBeforeNavigation(): void {
  * If yes, shows the blocked page instead.
  */
 function checkBeforeTabActivation(): void {
-  chrome.tabs.onActivated.addListener(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-      const tab = tabs[0];
-      if (!tab || !tab.url || !tab.id) {
-        return false;
-      }
+  chrome.tabs.onActivated.addListener(async () => {
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    const tab = tabs[0];
+    if (!tab || !tab.url || !tab.id) {
+      return;
+    }
 
-      const currentSiteName: string = getDomainNameFromURL(tab.url);
-      const blockedSites: string[] = await Storage.getBlockedWebSites();
-      const focusMode = await Storage.getFocusMode();
+    const currentSiteName: string = getDomainNameFromURL(tab.url);
+    const blockedSites: string[] = await Storage.getBlockedWebSites();
+    const focusMode = await Storage.getFocusMode();
 
-      if (blockedSites.includes(currentSiteName) && !isBlockedPage(tab.url) && focusMode) {
-        chrome.tabs.update(tab.id, { url: `blocked.html?site=${tab.url}` });
-      }
-
-      return false;
-    });
+    if (blockedSites.includes(currentSiteName) && !isBlockedPage(tab.url) && focusMode) {
+      chrome.tabs.update(tab.id, { url: `blocked.html?site=${tab.url}` });
+    }
   });
 }
 
@@ -68,10 +62,10 @@ function listensToFocusModeChange(): void {
       chrome.tabs.update(tabId, { url: getSiteNameFromURL(url) });
     }
 
-    const windows = chrome.extension.getViews({ type: 'popup' });
-    if (windows.length) {
-      windows[0].close();
-    }
+    // Close popup by sending a message to it
+    chrome.runtime.sendMessage({ event: Events.CLOSE_POPUP }).catch(() => {
+      // Popup might not be open, ignore error
+    });
   });
 }
 
